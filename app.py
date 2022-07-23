@@ -254,31 +254,32 @@ if selected_option == "Global Markets":
 	                            'Choose Global Index',
 	                            ('Nifty 50', 'Dow 30', 'FTSE 100' , 'CAC 40', 'DAX' ,'Nikkei 225', 'Hang Seng'))
 	      
-	      sb = st.button("See Chart")
+	      sb1 = st.button("See Chart")
 	      
 
-	      if sb:
-			  df = df.loc[(df['symbol'] == select_option)]
-			  country = df.iloc[0]['country']
-		      sym_yahoo = df.iloc[0]['yahoofin']
+	      if sb1:
 
-			  dftrynifty = fetch_investingcom(select_option, country)
-			  
-			  dateobj22 = list(dftrynifty.index.values)
-			
-			    
-			  datelist = [str(x) for x in dateobj22]
+				  df = df.loc[(df['symbol'] == select_option)]
+				  country = df.iloc[0]['country']
+			      sym_yahoo = df.iloc[0]['yahoofin']
 
-			  dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
-			    
-			  ohlclist = dfohlc.to_numpy().tolist()
-			    
-			  printcandlechart = candlestick_chart_display(datelist, ohlclist)
+				  dftrynifty = fetch_investingcom(select_option, country)
+				  
+				  dateobj22 = list(dftrynifty.index.values)
+				
+				    
+				  datelist = [str(x) for x in dateobj22]
 
-			  st_echarts(
-			                options=printcandlechart, height = "400px"
-			             )
-	         
+				  dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
+				    
+				  ohlclist = dfohlc.to_numpy().tolist()
+				    
+				  printcandlechart = candlestick_chart_display(datelist, ohlclist)
+
+				  st_echarts(
+				                options=printcandlechart, height = "400px"
+				             )
+		         
 
 
           
