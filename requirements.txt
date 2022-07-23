@@ -8,12 +8,9 @@ cufflinks
 yfinance
 mpl_finance
 mplfinance
-streamlit-auth0-component
 pyrebase4
 Pillow
-hydralit_components
 streamlit-echarts
-streamlit_autorefresh
 pytz
 SQLAlchemy
 investpy
