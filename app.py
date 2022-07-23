@@ -110,8 +110,8 @@ lc, mc, rc = st.columns(3)
 with st.sidebar:
   selected_option = option_menu(
     "TraDatAnalytix",
-    ['Global Markets','Derivatives Data','Open Interest Data', 'FII/DII Data','Pick Outperformers' ,'Trading Strategy'],
-    icons = ['globe','body-text','bar-chart-fill', 'gear', 'currency-exchange' ,'option'],
+    ['Global Markets','Derivatives Data','Pick Outperformers' ,'Trading Strategy'],
+    icons = ['globe','body-text', 'currency-exchange' ,'option'],
     menu_icon = "cast",
     default_index = 0
   )
@@ -249,7 +249,7 @@ if selected_option == "Global Markets":
   
 	    with st.form("Candle_Index"):
           
-        	st.write("View Global Indices Candle Chart")
+        	
         	df = pd.read_csv("./globalindices_sym.csv")
         	select_option = st.selectbox(
                                 'Choose Global Index',
