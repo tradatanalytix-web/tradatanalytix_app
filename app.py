@@ -255,34 +255,34 @@ if selected_option == "Global Markets":
                             'Choose Global Index',
                             ('Nifty 50', 'Dow 30', 'FTSE 100' , 'CAC 40', 'DAX' ,'Nikkei 225', 'Hang Seng'))
       
-      submitted = st.button("See Chart")
+      #submitted = st.button("See Chart")
 
-      if submitted:
-        df = df.loc[(df['symbol'] == select_option)]
-        country = df.iloc[0]['country']
-        sym_yahoo = df.iloc[0]['yahoofin']
+      
+	    df = df.loc[(df['symbol'] == select_option)]
+	    country = df.iloc[0]['country']
+	    sym_yahoo = df.iloc[0]['yahoofin']
 
-        dftrynifty = fetch_investingcom(select_option, country)
-        #st.write(country)
-        #st.write(sym_yahoo)
-        #st.write(dftrynifty)
-        dateobj22 = list(dftrynifty.index.values)
-        #st.write(datelist)
-        
-        datelist = [str(x) for x in dateobj22]
+	    dftrynifty = fetch_investingcom(select_option, country)
+	    #st.write(country)
+	    #st.write(sym_yahoo)
+	    #st.write(dftrynifty)
+	    dateobj22 = list(dftrynifty.index.values)
+	    #st.write(datelist)
+	    
+	    datelist = [str(x) for x in dateobj22]
 
-        dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
-        #st.write(dfohlc)
-        ohlclist = dfohlc.to_numpy().tolist()
-        #st.write(ohlclist)
-        printcandlechart = candlestick_chart_display(datelist, ohlclist)
+	    dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
+	    #st.write(dfohlc)
+	    ohlclist = dfohlc.to_numpy().tolist()
+	    #st.write(ohlclist)
+	    printcandlechart = candlestick_chart_display(datelist, ohlclist)
 
-        st_echarts(
-                      options=printcandlechart, height = "400px"
-                  )
+	    st_echarts(
+	                  options=printcandlechart, height = "400px"
+	              )
 
-        # prof_forecast =  prophet_forecast_graph(sym_yahoo)
-    # st.pyplot(prof_forecast)          
+    # prof_forecast =  prophet_forecast_graph(sym_yahoo)
+# st.pyplot(prof_forecast)          
 
 
           
