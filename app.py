@@ -258,26 +258,26 @@ if selected_option == "Global Markets":
       #submitted = st.button("See Chart")
 
       
-	    df = df.loc[(df['symbol'] == select_option)]
-	    country = df.iloc[0]['country']
-	    sym_yahoo = df.iloc[0]['yahoofin']
+	  df = df.loc[(df['symbol'] == select_option)]
+	  country = df.iloc[0]['country']
+      sym_yahoo = df.iloc[0]['yahoofin']
 
-	    dftrynifty = fetch_investingcom(select_option, country)
+	  dftrynifty = fetch_investingcom(select_option, country)
 	    #st.write(country)
 	    #st.write(sym_yahoo)
 	    #st.write(dftrynifty)
-	    dateobj22 = list(dftrynifty.index.values)
+	  dateobj22 = list(dftrynifty.index.values)
 	    #st.write(datelist)
 	    
-	    datelist = [str(x) for x in dateobj22]
+	  datelist = [str(x) for x in dateobj22]
 
-	    dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
+	  dfohlc = dftrynifty[["Close", "Open", "Low", "High"]]
 	    #st.write(dfohlc)
-	    ohlclist = dfohlc.to_numpy().tolist()
+	  ohlclist = dfohlc.to_numpy().tolist()
 	    #st.write(ohlclist)
-	    printcandlechart = candlestick_chart_display(datelist, ohlclist)
+	  printcandlechart = candlestick_chart_display(datelist, ohlclist)
 
-	    st_echarts(
+	  st_echarts(
 	                  options=printcandlechart, height = "400px"
 	              )
 
