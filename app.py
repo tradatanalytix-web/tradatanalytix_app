@@ -110,8 +110,8 @@ lc, mc, rc = st.columns(3)
 with st.sidebar:
   selected_option = option_menu(
     "TraDatAnalytix",
-    ['Global Markets','Derivatives Data','Pick Outperformers' ,'Trading Strategy'],
-    icons = ['globe','body-text', 'currency-exchange' ,'option'],
+    ['Global Markets','Derivatives Data','Pick Outperformers' ],
+    icons = ['globe','body-text', 'currency-exchange' ],
     menu_icon = "cast",
     default_index = 0
   )
