@@ -254,9 +254,10 @@ if selected_option == "Global Markets":
 	                            'Choose Global Index',
 	                            ('Nifty 50', 'Dow 30', 'FTSE 100' , 'CAC 40', 'DAX' ,'Nikkei 225', 'Hang Seng'))
 	      
+	      sb = st.button("See Chart")
 	      
 
-	      
+	      if sb:
 			  df = df.loc[(df['symbol'] == select_option)]
 			  country = df.iloc[0]['country']
 		      sym_yahoo = df.iloc[0]['yahoofin']
