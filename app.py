@@ -124,11 +124,14 @@ if selected_option == "Global Markets":
     icons=['collection', 'bank2'], 
     menu_icon="graph-up-arrow", default_index=0, orientation = "horizontal")
 
+    tab1, tab2 = st.tabs(["Dashboard", "Charts"])
+
+
 
 
     # Get CMPS
 
-    if selected_globalmarkets == "Dashboard":
+    with tab1:
       
       lc, mc, rc = st.columns(3)
 
@@ -198,7 +201,7 @@ if selected_option == "Global Markets":
 
       
     
-    if selected_globalmarkets == "Charts":
+    with tab2:
 
         # Summary Chart -- Global
 
