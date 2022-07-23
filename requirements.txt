@@ -1,4 +1,4 @@
-numpy==1.17.1
+numpy
 pandas
 plotly.express
 matplotlib
@@ -8,7 +8,6 @@ cufflinks
 yfinance
 mpl_finance
 mplfinance
-git+https://github.com/yanirs/streamlit-analytics
 streamlit-auth0-component
 pyrebase4
 Pillow
@@ -16,6 +15,5 @@ hydralit_components
 streamlit-echarts
 streamlit_autorefresh
 pytz
-streamlit_analytics
 SQLAlchemy
 investpy
