@@ -119,12 +119,9 @@ with st.sidebar:
 
 if selected_option == "Global Markets":
 
-    # horizontal menu
-    selected_globalmarkets = option_menu("", ["Dashboard", "Charts"], 
-    icons=['collection', 'bank2'], 
-    menu_icon="graph-up-arrow", default_index=0, orientation = "horizontal")
+    
 
-    tab1, tab2 = st.tabs(["Dashboard", "Charts"])
+    tab1, tab2, tab3 = st.tabs(["Dashboard", "Comparison Charts", "Candlesticks"])
 
 
 
@@ -248,7 +245,7 @@ if selected_option == "Global Markets":
 
 
 
-
+    with tab3:    
         with st.form("Candle_Index"):
           st.write("View Global Indices Candle Chart")
           df = pd.read_csv("./globalindices_sym.csv")
