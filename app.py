@@ -569,7 +569,8 @@ if selected_option == "Derivatives Data":
 
 if selected_option == "Pick Outperformers":
 
-    selected6 = option_menu("", ["Relative Strength", "RS Comparison"], orientation="horizontal")
+    with st.sidebar:
+      selected6 = option_menu("", ["Relative Strength", "RS Comparison"], orientation="horizontal")
 
 
     if selected6 == "Relative Strength":
