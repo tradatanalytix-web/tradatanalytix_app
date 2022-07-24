@@ -580,7 +580,7 @@ if selected_option == "Pick Outperformers":
 
 
 
-      with tab1:
+      
 
 
       df_nifty = yf.download('^NSEI', interval="1d", start=previous_Date, end=tday)
