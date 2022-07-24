@@ -305,7 +305,7 @@ if selected_option == "Derivatives Data":
     with st.sidebar:
       selected4 = option_menu("", ["Option OI",  "PCR", "Future OI", "Max Pain"], 
       icons=['collection', 'activity', 'speedometer', 'chevron-bar-contract'], 
-      menu_icon="graph-up-arrow", default_index=0, orientation = "horizontal")
+      menu_icon="graph-up-arrow", default_index=0, orientation = "vertical")
 
 
     if selected4 == "Option OI":
