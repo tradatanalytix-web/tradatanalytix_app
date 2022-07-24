@@ -120,15 +120,19 @@ with st.sidebar:
 if selected_option == "Global Markets":
 
     
+    with st.sidebar:
+      selected1 = option_menu("", ["Dashboard",  "Compare Markets", "Candlestick Chart"], 
+      icons=['collection', 'activity', 'speedometer'], 
+      menu_icon="graph-up-arrow", default_index=0, orientation = "vertical")
 
-    tab1, tab2, tab3 = st.tabs(["Dashboard", "Comparison Charts", "Candlesticks"])
+    
 
 
 
 
     # Get CMPS
 
-    with tab1:
+    if selected1 == "Dashboard":
       
       lc, mc, rc = st.columns(3)
 
@@ -198,7 +202,7 @@ if selected_option == "Global Markets":
 
       
     
-    with tab2:
+    if selected1 == "Compare Markets":
 
         # Summary Chart -- Global
 
@@ -245,7 +249,7 @@ if selected_option == "Global Markets":
 
 
 
-    with tab3:    
+    if selected1 == "Candlestick Chart":    
   
 	    with st.form("Candle_Index"):
           
