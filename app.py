@@ -381,7 +381,7 @@ if selected_option == "Derivatives Data":
           # Plotting OI Change Graph
           
           #st.plotly_chart(coi_chart)
-          md_results = f"**PCR for {option} **{round(pcr, 2)}"
+          md_results = f"PCR for {option} {round(pcr, 2)}"
           st.markdown(md_results)
 
           st_echarts(
