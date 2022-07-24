@@ -120,10 +120,10 @@ with st.sidebar:
 if selected_option == "Global Markets":
 
     
-    with st.sidebar:
-      selected1 = option_menu("", ["Dashboard",  "Compare Markets", "Candlestick Chart"], 
-      icons=['collection', 'activity', 'speedometer'], 
-      menu_icon="graph-up-arrow", default_index=0, orientation = "vertical")
+    
+    selected1 = option_menu("", ["Dashboard",  "Compare Markets", "Candlestick Chart"], 
+    icons=['collection', 'activity', 'speedometer'], 
+    menu_icon="graph-up-arrow", default_index=0, orientation = "horizontal")
 
     
 
@@ -306,10 +306,10 @@ if selected_option == "Derivatives Data":
     df = fnodata(tday)
 
 
-    with st.sidebar:
-      selected4 = option_menu("", ["Option OI",  "PCR", "Future OI", "Max Pain"], 
-      icons=['collection', 'activity', 'speedometer', 'chevron-bar-contract'], 
-      menu_icon="graph-up-arrow", default_index=0, orientation = "vertical")
+    
+    selected4 = option_menu("", ["Option OI",  "PCR", "Future OI", "Max Pain"], 
+    icons=['collection', 'activity', 'speedometer', 'chevron-bar-contract'], 
+    menu_icon="graph-up-arrow", default_index=0, orientation = "horizontal")
 
 
     if selected4 == "Option OI":
@@ -573,8 +573,8 @@ if selected_option == "Derivatives Data":
 
 if selected_option == "Pick Outperformers":
 
-    with st.sidebar:
-      selected6 = option_menu("", ["Relative Strength", "RS Comparison"], orientation="horizontal")
+    
+    selected6 = option_menu("", ["Relative Strength", "RS Comparison"], orientation="horizontal")
 
 
     if selected6 == "Relative Strength":
