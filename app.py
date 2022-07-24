@@ -583,75 +583,82 @@ if selected_option == "Pick Outperformers":
       with tab1:
 
 
-        df_nifty = yf.download('^NSEI', interval="1d", start=previous_Date, end=tday)
-        df_nifty['Date'] = pd.to_datetime(df_nifty.index)
-        df_nifty['Date'] = df_nifty['Date'].apply(mpl_dates.date2num)
+      df_nifty = yf.download('^NSEI', interval="1d", start=previous_Date, end=tday)
+      df_nifty['Date'] = pd.to_datetime(df_nifty.index)
+      df_nifty['Date'] = df_nifty['Date'].apply(mpl_dates.date2num)
 
-        df_nifty = df_nifty.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
+      df_nifty = df_nifty.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
 
 
-        df_banknifty = yf.download('^NSEBANK', interval="1d", start=previous_Date, end=tday)
-        df_banknifty['Date'] = pd.to_datetime(df_banknifty.index)
-        df_banknifty['Date'] = df_banknifty['Date'].apply(mpl_dates.date2num)
+      df_banknifty = yf.download('^NSEBANK', interval="1d", start=previous_Date, end=tday)
+      df_banknifty['Date'] = pd.to_datetime(df_banknifty.index)
+      df_banknifty['Date'] = df_banknifty['Date'].apply(mpl_dates.date2num)
 
-        df_banknifty = df_banknifty.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
+      df_banknifty = df_banknifty.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
 
-        rsdata_bank = pd.merge(df_nifty, df_banknifty, left_index=True, right_index=True)
+      rsdata_bank = pd.merge(df_nifty, df_banknifty, left_index=True, right_index=True)
 
-        rsdata_bank['Relative Strength'] = rsdata_bank["Close_y"]/rsdata_bank["Close_x"]
+      rsdata_bank['Relative Strength'] = rsdata_bank["Close_y"]/rsdata_bank["Close_x"]
 
-        rs_df = pd.DataFrame()
-        rs_df["Date"] = df_nifty['Date']
-        rs_df["bank"] = rsdata_bank['Relative Strength'].pct_change()
-        df_bank = rsdata_bank[['Date_x', 'Relative Strength']]
-        fig_bank = px.line(df_bank, y='Relative Strength', title='Relative Strength - Bank Nifty')
+      rs_df = pd.DataFrame()
+      rs_df["Date"] = df_nifty['Date']
+      rs_df["bank"] = rsdata_bank['Relative Strength'].pct_change()
+      df_bank = rsdata_bank[['Date_x', 'Relative Strength']]
+      fig_bank = px.line(df_bank, y='Relative Strength', title='Relative Strength - Bank Nifty')
+      
+
+
+      with tab1:
         st.plotly_chart(fig_bank)
 
 
-        rsbank_list = df_bank["Relative Strength"].tolist()
-        datebank_list = df_bank["Date_x"].tolist()
+      rsbank_list = df_bank["Relative Strength"].tolist()
+      datebank_list = df_bank["Date_x"].tolist()
 
-      # option = {
-      #               "xAxis": {
-      #                   "type": "category",
-      #                   "data": datebank_list,
-      #               },
-      #               "yAxis": {"type": "value"},
-      #               "series": [{"data": rsbank_list, "type": "line"}],
-      #           }
+    # option = {
+    #               "xAxis": {
+    #                   "type": "category",
+    #                   "data": datebank_list,
+    #               },
+    #               "yAxis": {"type": "value"},
+    #               "series": [{"data": rsbank_list, "type": "line"}],
+    #           }
 
-      # option = oi_premium_bar_js()
+    # option = oi_premium_bar_js()
 
-      # st_echarts(
-      #                 options=option, height="400px",
-      #             )
+    # st_echarts(
+    #                 options=option, height="400px",
+    #             )
 
+      
+
+    
+      
+      df_niftyit = yf.download('^CNXIT', interval="1d", start=previous_Date, end=tday)
+      df_niftyit['Date'] = pd.to_datetime(df_niftyit.index)
+      df_niftyit['Date'] = df_niftyit['Date'].apply(mpl_dates.date2num)
+
+      df_niftyit = df_niftyit.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
+
+      rsdata_it = pd.merge(df_nifty, df_niftyit, left_index=True, right_index=True)
+
+      rsdata_it['Relative Strength'] = rsdata_it["Close_y"]/rsdata_it["Close_x"]
+
+
+      rs_df["IT"] = rsdata_it['Relative Strength'].pct_change()
+
+      df_it = rsdata_it[['Date_x', 'Relative Strength']]
+      fig_it = px.line(df_it, y='Relative Strength', title='Relative Strength - IT')
       
 
       with tab2:
-      
-        df_niftyit = yf.download('^CNXIT', interval="1d", start=previous_Date, end=tday)
-        df_niftyit['Date'] = pd.to_datetime(df_niftyit.index)
-        df_niftyit['Date'] = df_niftyit['Date'].apply(mpl_dates.date2num)
-
-        df_niftyit = df_niftyit.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
-
-        rsdata_it = pd.merge(df_nifty, df_niftyit, left_index=True, right_index=True)
-
-        rsdata_it['Relative Strength'] = rsdata_it["Close_y"]/rsdata_it["Close_x"]
-
-
-        rs_df["IT"] = rsdata_it['Relative Strength'].pct_change()
-
-        df_it = rsdata_it[['Date_x', 'Relative Strength']]
-        fig_it = px.line(df_it, y='Relative Strength', title='Relative Strength - IT')
         st.plotly_chart(fig_it)
 
-        stringdate1 = str(tday)
-        stringdate2 = str(previous_Date)
+      stringdate1 = str(tday)
+      stringdate2 = str(previous_Date)
 
-        lastconnection = datetime.datetime.strptime(stringdate1, "%Y-%m-%d").strftime("%d/%m/%Y")
-        firstconnection = datetime.datetime.strptime(stringdate2, "%Y-%m-%d").strftime("%d/%m/%Y")
+      lastconnection = datetime.datetime.strptime(stringdate1, "%Y-%m-%d").strftime("%d/%m/%Y")
+      firstconnection = datetime.datetime.strptime(stringdate2, "%Y-%m-%d").strftime("%d/%m/%Y")
 
       #df_niftyit = yf.download('^CNXAUTO', interval="1d", start=previous_Date, end=tday)
       dfnifty_commodities = fetch_investingcom_hist(sym = "Nifty Pharma", country = "India", startdate = str(firstconnection), enddate = str(lastconnection))
@@ -666,7 +673,9 @@ if selected_option == "Pick Outperformers":
       rs_df["Pharma"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Pharma')
-      st.plotly_chart(fig_commodities)
+      
+      with tab3:
+        st.plotly_chart(fig_commodities)
 
 
       
@@ -683,7 +692,10 @@ if selected_option == "Pick Outperformers":
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       rs_df["Auto"] = rsdata_commodities['Relative Strength'].pct_change()
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Auto')
-      st.plotly_chart(fig_commodities)
+      
+
+      with tab4:
+        st.plotly_chart(fig_commodities)
 
 
       
@@ -700,7 +712,9 @@ if selected_option == "Pick Outperformers":
       rs_df["Metal"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Metals')
-      st.plotly_chart(fig_commodities)
+      
+      with tab5:
+        st.plotly_chart(fig_commodities)
 
 
       
@@ -717,7 +731,9 @@ if selected_option == "Pick Outperformers":
       rs_df["Media"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Media')
-      st.plotly_chart(fig_commodities)
+      
+      with tab6:
+        st.plotly_chart(fig_commodities)
 
 
           
@@ -734,7 +750,9 @@ if selected_option == "Pick Outperformers":
       rs_df["Realty"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Realty')
-      st.plotly_chart(fig_commodities)
+      
+      with tab7:
+        st.plotly_chart(fig_commodities)
 
 
           
@@ -751,7 +769,10 @@ if selected_option == "Pick Outperformers":
       rs_df["Consumption"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - FMCG')
-      st.plotly_chart(fig_commodities)
+      
+
+      with tab8:
+        st.plotly_chart(fig_commodities)
 
 
       
@@ -768,7 +789,9 @@ if selected_option == "Pick Outperformers":
       rs_df["Infrastructure"] = rsdata_commodities['Relative Strength'].pct_change()
       df_commodities = rsdata_commodities[['Date_x', 'Relative Strength']]
       fig_commodities = px.line(df_commodities, y='Relative Strength', title='Relative Strength - Infrastructure')
-      st.plotly_chart(fig_commodities)
+      
+      with tab9:
+        st.plotly_chart(fig_commodities)
 
       rs_df = rs_df.iloc[1: , :]
       #rs_df.dropna()
