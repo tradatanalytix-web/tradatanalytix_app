@@ -87,7 +87,7 @@ st.set_page_config(page_title = 'TraDatAnalytix',layout='wide', page_icon=logo_t
 
 
 
-holidays_dates = ["2022-03-18", "2022-01-26"]
+holidays_dates = ["2022-03-18", "2022-01-26", "2022-08-15"]
 
 
 current_time = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
